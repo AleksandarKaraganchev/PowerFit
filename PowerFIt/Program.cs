@@ -1,6 +1,8 @@
+using ASPShopBag.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PowerFIt.Data;
+using PowerFIt.Models;
 
 namespace PowerFIt
 {
@@ -15,13 +17,14 @@ namespace PowerFIt
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            builder.Services.AddControllers(op => op.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);//var app = builder.Build();
+            builder.Services.AddDefaultIdentity<Customer>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddControllers(op => op.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -35,7 +38,7 @@ namespace PowerFIt
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.PrepareDataBase().Wait();
             app.UseHttpsRedirection();
             app.UseRouting();
 

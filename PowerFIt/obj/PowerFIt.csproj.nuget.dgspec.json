@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\12d\\PowerFIt\\PowerFIt\\PowerFIt.csproj": {}
+    "C:\\Users\\HP bbd\\Desktop\\PowerFit-main\\PowerFit-main\\PowerFIt\\PowerFIt.csproj": {}
   },
   "projects": {
-    "C:\\12d\\PowerFIt\\PowerFIt\\PowerFIt.csproj": {
+    "C:\\Users\\HP bbd\\Desktop\\PowerFit-main\\PowerFit-main\\PowerFIt\\PowerFIt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\12d\\PowerFIt\\PowerFIt\\PowerFIt.csproj",
+        "projectUniqueName": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main\\PowerFit-main\\PowerFIt\\PowerFIt.csproj",
         "projectName": "PowerFIt",
-        "projectPath": "C:\\12d\\PowerFIt\\PowerFIt\\PowerFIt.csproj",
-        "packagesPath": "C:\\Users\\1212-6\\.nuget\\packages\\",
-        "outputPath": "C:\\12d\\PowerFIt\\PowerFIt\\obj\\",
+        "projectPath": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main\\PowerFit-main\\PowerFIt\\PowerFIt.csproj",
+        "packagesPath": "C:\\Users\\HP bbd\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main\\PowerFit-main\\PowerFIt\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\1212-6\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP bbd\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -57,19 +57,29 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[9.0.12, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[9.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[9.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.10, )"
+              "version": "[9.0.12, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[9.0.12, )"
             }
           },
           "imports": [
@@ -91,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
