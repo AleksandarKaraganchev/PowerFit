@@ -25,9 +25,14 @@ namespace PowerFIt
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddControllers(op => op.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+            builder.Services.AddRazorPages();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                
+            }
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();

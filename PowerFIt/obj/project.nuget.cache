@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GKJyB+4Aa1Y=",
+  "dgSpecHash": "np+uSEijn9I=",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main\\PowerFit-main\\PowerFIt\\PowerFIt.csproj",
+  "projectFilePath": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\PowerFIt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP bbd\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\HP bbd\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
