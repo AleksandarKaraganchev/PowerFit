@@ -54,8 +54,9 @@ namespace PowerFIt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,RegOn")] DosageForm dosageForm)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description")] DosageForm dosageForm)
         {
+            dosageForm.RegOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(dosageForm);

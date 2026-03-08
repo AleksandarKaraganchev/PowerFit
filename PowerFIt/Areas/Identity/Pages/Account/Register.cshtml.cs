@@ -80,7 +80,8 @@ namespace PowerFIt.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-
+            [Display(Name = "Телефон")]
+            public string PhoneNumber { get; set; }
             [Required(ErrorMessage = "This field is required")]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
@@ -132,7 +133,8 @@ namespace PowerFIt.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    Description = Input.Description
+                    Description = Input.Description,
+                    PhoneNumber = Input.PhoneNumber
                 };
 
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);

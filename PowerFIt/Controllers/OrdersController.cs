@@ -49,8 +49,8 @@ namespace PowerFIt.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
+            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace PowerFIt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id", order.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", order.ProductId);
+            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
 
@@ -85,8 +85,8 @@ namespace PowerFIt.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id", order.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", order.ProductId);
+            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
 
@@ -95,8 +95,9 @@ namespace PowerFIt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,CustomerId,Quantity,Description,OrderDate")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,CustomerId,Quantity,Description")] Order order)
         {
+            order.OrderDate = DateTime.Now;
             if (id != order.Id)
             {
                 return NotFound();
@@ -122,8 +123,8 @@ namespace PowerFIt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Id", order.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", order.ProductId);
+            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
 

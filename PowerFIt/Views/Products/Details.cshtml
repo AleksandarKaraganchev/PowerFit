@@ -20,13 +20,13 @@
             @Html.DisplayNameFor(model => model.Categories)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categories.Id)
+            @Html.DisplayFor(model => model.Categories.Name)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DosageForms)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DosageForms.Id)
+            @Html.DisplayFor(model => model.DosageForms.Name)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
@@ -47,10 +47,10 @@
             @Html.DisplayFor(model => model.RecommendedFor)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
+           Image
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Model.Image" width="100" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)

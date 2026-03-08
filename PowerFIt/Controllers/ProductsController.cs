@@ -49,8 +49,8 @@ namespace PowerFIt.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id");
-            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Id");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Name");
             return View();
         }
 
@@ -59,16 +59,17 @@ namespace PowerFIt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CategoryId,DosageFormId,Quantity,Description,RecommendedFor,Image,Price,RegOn,MeasureUnit")] Product product)
+        public async Task<IActionResult> Create([Bind("Name,CategoryId,DosageFormId,Quantity,Description,RecommendedFor,Image,Price,MeasureUnit")] Product product)
         {
+            product.RegOn = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Id", product.DosageFormId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Name", product.DosageFormId);
             return View(product);
         }
 
@@ -85,8 +86,8 @@ namespace PowerFIt.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Id", product.DosageFormId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Name", product.DosageFormId);
             return View(product);
         }
 
@@ -122,8 +123,8 @@ namespace PowerFIt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", product.CategoryId);
-            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Id", product.DosageFormId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Name", product.DosageFormId);
             return View(product);
         }
 

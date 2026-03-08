@@ -1113,9 +1113,7 @@ C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\nezrqnk58p-muycvpuwrr.gz
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\v0zgfp0y55-87fc7y1x7t.gz
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\yfc7ypekbg-mlv21k5csn.gz
-C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\owcsbosyvj-lugek5hnai.gz
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\a64kb6i4wa-61n19gt1b8.gz
-C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\3cnh8d1dr7-fr7q2aak1r.gz
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\2vjuoy1klw-bqjiyaj88i.gz
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\cusxl8e3jx-c2jlpeoesf.gz
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\ewxownm5vz-erw9l3u2r3.gz
@@ -1188,3 +1186,5 @@ C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\PowerFIt.pdb
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\PowerFIt.genruntimeconfig.cache
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\ref\PowerFIt.dll
+C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\3cnh8d1dr7-4n19scvwov.gz
+C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\owcsbosyvj-uous5ws0bt.gz

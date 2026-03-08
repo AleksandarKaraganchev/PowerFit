@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.RecommendedFor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Image)
+                Image
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
@@ -52,10 +52,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categories.Id)
+                @Html.DisplayFor(modelItem => item.Categories.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DosageForms.Id)
+                @Html.DisplayFor(modelItem => item.DosageForms.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
@@ -67,7 +67,7 @@
                 @Html.DisplayFor(modelItem => item.RecommendedFor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                    <img src="@item.Image" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
