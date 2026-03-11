@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +12,16 @@ using PowerFIt.Models;
 
 namespace PowerFIt.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<Customer> _userManager;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context, UserManager<Customer> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Orders
@@ -49,7 +54,7 @@ namespace PowerFIt.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name");
+            //ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name");
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
@@ -59,15 +64,17 @@ namespace PowerFIt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ProductId,CustomerId,Quantity,Description,OrderDate")] Order order)
+        public async Task<IActionResult> Create([Bind("ProductId,Quantity,Description")] Order order)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(order);
+                order.OrderDate = DateTime.Now;
+                order.CustomerId = _userManager.GetUserId(User);
+                _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+            //ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
@@ -95,7 +102,7 @@ namespace PowerFIt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,CustomerId,Quantity,Description")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,Quantity,Description")] Order order)
         {
             order.OrderDate = DateTime.Now;
             if (id != order.Id)
@@ -107,6 +114,7 @@ namespace PowerFIt.Controllers
             {
                 try
                 {
+                    order.CustomerId = _userManager.GetUserId(User);
                     _context.Update(order);
                     await _context.SaveChangesAsync();
                 }
@@ -123,7 +131,7 @@ namespace PowerFIt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+            //ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }

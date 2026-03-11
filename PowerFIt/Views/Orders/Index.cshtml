@@ -46,7 +46,8 @@
                 @Html.DisplayFor(modelItem => item.Products.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customers.Id)
+               @*  @Html.DisplayFor(modelItem => item.Customers.Id) *@
+               @item.Customers.FirstName @item.Customers.LastName
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

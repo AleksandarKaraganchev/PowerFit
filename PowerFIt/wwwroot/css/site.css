@@ -407,17 +407,6 @@ body {
 }
 
 
-/* ===== FOOTER STYLE ===== */
-
-/*footer {
-    background: #0f182e;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 15px 0;
-    margin-top: 40px;
-    color: #aab3c2;
-}*/
-
-/* footer link */
 
 footer a {
     color: #32e0c4;
@@ -438,36 +427,7 @@ main {
 }
 /* ===== FIX BOOTSTRAP TABLE COLORS ===== */
 
-/*.table {
-    background: rgba(255,255,255,0.04) !important;
-    color: #e5e9f0 !important;
-}
 
-    .table thead {
-        background: rgba(50,224,196,0.1) !important;
-    }
-
-        .table thead th {
-            color: #32e0c4 !important;
-            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-        }
-
-    .table tbody tr {
-        background: transparent !important;
-    }
-
-    .table tbody td {
-        color: #e5e9f0 !important;
-    }
-
-    .table tbody tr:hover {
-        background: rgba(50,224,196,0.05) !important;
-    }
-
-    .table td,
-    .table th {
-        border-color: rgba(255,255,255,0.05) !important;
-    }*/
 /* ===== FIX ASP.NET LAYOUT FOOTER ===== */
 
 html, body {
@@ -479,21 +439,46 @@ body {
     flex-direction: column;
 }
 
-/* container държи съдържанието */
 .container {
     flex: 1 0 auto;
 }
 
-/* main заема свободното място */
 main {
     flex: 1;
 }
 
-/* footer винаги най-долу */
 footer {
     flex-shrink: 0;
     margin-top: auto;
     background: #0f182e;
     border-top: 1px solid rgba(255,255,255,0.08);
     padding: 15px 0;
+}
+
+
+/* ===== PERFECT STICKY FOOTER ===== */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* основното съдържание */
+.main-container {
+    flex: 1;
+}
+
+/* footer */
+footer {
+    margin-top: auto;
+}
+
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
 }
