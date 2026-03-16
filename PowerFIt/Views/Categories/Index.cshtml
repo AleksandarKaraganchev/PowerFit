@@ -1,49 +1,69 @@
 ﻿@model IEnumerable<PowerFIt.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Категории";
 }
 
-<h1>Списък с типове продукти</h1>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Категории</h1>
+        <p class="page-subtitle">
+            Управление на категориите за фитнес добавките в системата.
+        </p>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Име на категория на продукти
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                Описание на продукти
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegOn)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    @if (User.IsInRole("Admin"))
+    {
+        <div>
+            <a asp-action="Create" class="btn hero-btn-primary">+ Добави категория</a>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        <h3>Все още няма добавени категории.</h3>
+        <p>Когато добавиш категории, те ще се покажат тук.</p>
+    </div>
 }
-    </tbody>
-</table>
+else
+{
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-xl-4">
+                <div class="category-card">
+                    <div class="category-card-top">
+                        <div class="category-icon">📦</div>
+                        <div class="category-badge">Категория</div>
+                    </div>
+
+                    <div class="category-card-body">
+                        <h3 class="category-title">@item.Name</h3>
+                        <p class="category-text">
+                            @(string.IsNullOrWhiteSpace(item.Description)
+                                                ? "Няма описание за тази категория."
+                                                : item.Description)
+                </p>
+                    </div>
+
+                    <div class="category-card-actions">
+                        <a asp-controller="Products"
+                           asp-action="Index"
+                           asp-route-categoryId="@item.Id"
+                           class="btn product-btn-secondary">
+                            Виж продуктите
+                        </a>
+
+                @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">Редакция</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn product-btn-danger">Изтрий</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

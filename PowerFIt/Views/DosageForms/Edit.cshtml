@@ -1,44 +1,48 @@
 ﻿@model PowerFIt.Models.DosageForm
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Редакция на форма";
 }
 
-<h1>Edit</h1>
+<div class="form-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Редакция на форма</h1>
+            <p class="page-subtitle">
+                Променете информацията за избраната форма.
+            </p>
+        </div>
+    </div>
 
-<h4>DosageForm</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="product-form-card">
+        <form asp-action="Edit" method="post">
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="form-grid">
+                <div class="form-field form-field-full">
+                    <label asp-for="Name" class="form-label">Име на форма</label>
+                    <input asp-for="Name" class="form-control custom-input" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-field form-field-full">
+                    <label asp-for="Description" class="form-label">Описание</label>
+                    <textarea asp-for="Description" rows="4" class="form-control custom-input custom-textarea"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-         @*    <div class="form-group">
-                <label asp-for="RegOn" class="control-label"></label>
-                <input asp-for="RegOn" class="form-control" />
-                <span asp-validation-for="RegOn" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <div class="form-actions">
+                <button type="submit" class="btn hero-btn-primary">Запази промените</button>
+                <a asp-action="Index" class="btn hero-btn-secondary">Назад</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

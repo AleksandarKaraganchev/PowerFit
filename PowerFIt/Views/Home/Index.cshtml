@@ -1,8 +1,154 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <div class="hero-badge">Онлайн магазин за фитнес добавки</div>
+
+            <h1 class="hero-title">
+                Сила и действие за твоите
+                <span>тренировки, възстановяване и резултати</span>
+            </h1>
+
+            <p class="hero-text">
+                Добре дошли в <strong>„Сила и действие“</strong> – уеб приложение за онлайн продажба
+                на фитнес добавки. Разгледайте продукти по категории, изберете подходящо
+                предназначение и направете своята поръчка бързо и удобно.
+            </p>
+
+            <div class="hero-actions">
+                <a asp-controller="Products" asp-action="Index" class="btn hero-btn-primary">
+                    Разгледай продуктите
+                </a>
+
+                <a asp-controller="Categories" asp-action="Index" class="btn hero-btn-secondary">
+                    Виж категориите
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat-card">
+                    <h3>Категории</h3>
+                    <p>Протеини, аминокиселини, витамини, предтренировъчни формули и други.</p>
+                </div>
+
+                <div class="hero-stat-card">
+                    <h3>Удобно пазаруване</h3>
+                    <p>Лесно разглеждане, избор на продукти и създаване на поръчки.</p>
+                </div>
+
+                <div class="hero-stat-card">
+                    <h3>Администриране</h3>
+                    <p>Пълен контрол върху продукти, категории, форми и поръчки.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="hero-visual-card">
+                <div class="hero-visual-top">PowerFit</div>
+
+                <div class="hero-visual-body">
+                    <div class="product-mini-card">
+                        <span class="mini-label">Категория</span>
+                        <h4>Протеини</h4>
+                        <p>За мускулна маса, възстановяване и силова подготовка.</p>
+                    </div>
+
+                    <div class="product-mini-card">
+                        <span class="mini-label">Предназначение</span>
+                        <h4>Изгаряне на мазнини</h4>
+                        <p>Добавки за активен режим и постигане на по-добра форма.</p>
+                    </div>
+
+                    <div class="product-mini-card">
+                        <span class="mini-label">Типове</span>
+                        <h4>Прах, капсули, течност</h4>
+                        <p>Разнообразни форми за различни нужди и предпочитания.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<section class="home-section">
+    <div class="section-heading">
+        <h2>Популярни продуктови групи</h2>
+        <p>Основните видове добавки, които могат да бъдат предлагани в системата.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-xl-3">
+            <div class="home-feature-card">
+                <div class="feature-icon">💪</div>
+                <h3>Протеини</h3>
+                <p>Подходящи за покачване на мускулна маса, възстановяване и дневен прием на белтъчини.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+            <div class="home-feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Аминокиселини</h3>
+                <p>Поддържат възстановяването, издръжливостта и тренировъчния процес.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+            <div class="home-feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Витамини</h3>
+                <p>Подпомагат баланса, имунитета и цялостната физическа активност.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+            <div class="home-feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Предтренировъчни</h3>
+                <p>Създадени за енергия, фокус и по-висока интензивност по време на тренировка.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6">
+            <div class="info-panel">
+                <h2>Какво предлага системата?</h2>
+                <ul class="home-list">
+                    <li>Преглед на продукти по категории и форми</li>
+                    <li>Филтриране според предназначение</li>
+                    <li>Регистрация и вход на клиенти</li>
+                    <li>Добавяне на продукти в количка</li>
+                    <li>Създаване и управление на поръчки</li>
+                    <li>Административен панел за управление на съдържанието</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="info-panel accent-panel">
+                <h2>Защо този проект е завършен?</h2>
+                <p>
+                    Приложението съчетава база данни, потребителски роли, MVC архитектура,
+                    административни функционалности и удобен потребителски интерфейс.
+                    Това го прави подходящо решение за дипломен проект.
+                </p>
+
+                <div class="mt-4">
+                    <a asp-controller="Products" asp-action="Index" class="btn hero-btn-primary me-2 mb-2">
+                        Към продуктите
+                    </a>
+                    <a asp-controller="Orders" asp-action="Index" class="btn hero-btn-secondary mb-2">
+                        Към поръчките
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

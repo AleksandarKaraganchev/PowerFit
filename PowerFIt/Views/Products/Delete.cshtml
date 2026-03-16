@@ -1,81 +1,87 @@
 ﻿@model PowerFIt.Models.Product
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Изтриване на продукт";
 }
 
-<h1>Delete</h1>
+<div class="delete-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Изтриване на продукт</h1>
+            <p class="page-subtitle">
+                Потвърди изтриването на избрания продукт от системата.
+            </p>
+        </div>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categories)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categories.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DosageForms)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DosageForms.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RecommendedFor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RecommendedFor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MeasureUnit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MeasureUnit)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div class="delete-card">
+        <div class="delete-warning-box">
+            <div class="delete-warning-title">Внимание</div>
+            <p>
+                Сигурен ли си, че искаш да изтриеш този продукт? Това действие не може да бъде отменено.
+            </p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-5">
+                <div class="delete-image-card">
+                    @if (!string.IsNullOrWhiteSpace(Model.Image))
+                    {
+                        <img src="@Model.Image" alt="@Model.Name" class="delete-product-image" />
+                    }
+                    else
+                    {
+                        <img src="/images/no-image.png" alt="Няма изображение" class="delete-product-image" />
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="delete-info-card">
+                    <h2>Информация за продукта</h2>
+
+                    <div class="delete-info-grid">
+                        <div class="delete-info-item">
+                            <span>Име</span>
+                            <strong>@Model.Name</strong>
+                        </div>
+
+                        <div class="delete-info-item">
+                            <span>Категория</span>
+                            <strong>@(Model.Categories?.Name ?? "-")</strong>
+                        </div>
+
+                        <div class="delete-info-item">
+                            <span>Форма</span>
+                            <strong>@(Model.DosageForms?.Name ?? "-")</strong>
+                        </div>
+
+                        <div class="delete-info-item">
+                            <span>Цена</span>
+                            <strong>@Model.Price.ToString("0.00") лв.</strong>
+                        </div>
+                    </div>
+
+                    <div class="delete-description-box">
+                        <h3>Описание</h3>
+                        @if (!string.IsNullOrWhiteSpace(Model.Description))
+                        {
+                            <p>@Model.Description</p>
+                        }
+                        else
+                        {
+                            <p>Няма добавено описание за този продукт.</p>
+                        }
+                    </div>
+
+                    <form asp-action="Delete" class="delete-actions">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn product-btn-danger">Изтрий продукта</button>
+                        <a asp-action="Details" asp-route-id="@Model.Id" class="btn product-btn-secondary">Към детайли</a>
+                        <a asp-action="Index" class="btn hero-btn-secondary">Назад към продуктите</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,78 +1,107 @@
 ﻿@model PowerFIt.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детайли за продукт";
 }
 
-<h1>Details</h1>
+<div class="details-page">
+    <div class="details-header">
+        <div>
+            <div class="details-badge">
+                @(Model.Categories?.Name ?? "Категория")
+            </div>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categories)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categories.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DosageForms)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DosageForms.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RecommendedFor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RecommendedFor)
-        </dd>
-        <dt class = "col-sm-2">
-           Image
-        </dt>
-        <dd class = "col-sm-10">
-            <img src="@Model.Image" width="100" />
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegOn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RegOn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MeasureUnit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MeasureUnit)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <h1 class="details-title">@Model.Name</h1>
+
+            <p class="details-subtitle">
+                Подробна информация за избрания продукт.
+            </p>
+        </div>
+
+        <div class="details-price-box">
+            <span class="details-price-label">Цена</span>
+            <div class="details-price">@Model.Price.ToString("0.00") €</div>
+        </div>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+        <div class="col-lg-5">
+            <div class="details-image-card">
+
+                @if (!string.IsNullOrWhiteSpace(Model.Image))
+                {
+                    <img src="@Model.Image" alt="@Model.Name" class="details-product-image" />
+                }
+                else
+                {
+                    <img src="/images/no-image.png" alt="Няма изображение" class="details-product-image" />
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="details-info-card">
+                <h2>Информация за продукта</h2>
+
+                <div class="details-info-grid">
+                    <div class="details-info-item">
+                        <span>Име</span>
+                        <strong>@Model.Name</strong>
+                    </div>
+
+                    <div class="details-info-item">
+                        <span>Категория</span>
+                        <strong>@(Model.Categories?.Name ?? "-")</strong>
+                    </div>
+
+                    <div class="details-info-item">
+                        <span>Форма</span>
+                        <strong>@(Model.DosageForms?.Name ?? "-")</strong>
+                    </div>
+                    <div class="details-info-item">
+                        <span>Предназначение</span>
+                        <strong>
+                            @(string.IsNullOrWhiteSpace(Model.RecommendedFor)
+                                                        ? "Не е посочено"
+                                                        : Model.RecommendedFor)
+                        </strong>
+                    </div>
+
+                    <div class="details-info-item">
+                        <span>Цена</span>
+                        <strong>@Model.Price.ToString("0.00") €</strong>
+                    </div>
+
+                </div>
+
+                <div class="details-description-box">
+                    <h3>Описание</h3>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Description))
+                    {
+                        <p>@Model.Description</p>
+                    }
+                    else
+                    {
+                        <p>Няма добавено описание за този продукт.</p>
+                    }
+                </div>
+
+                <div class="details-actions">
+                    <a asp-action="Index" class="btn hero-btn-secondary">Назад към продуктите</a>
+
+                    @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                    {
+                        <a href="#" class="btn hero-btn-primary">Добави в количката</a>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn product-btn-warning">Редакция</a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn product-btn-danger">Изтрий</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

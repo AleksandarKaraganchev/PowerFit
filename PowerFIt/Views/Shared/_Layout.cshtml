@@ -1,51 +1,193 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Microsoft.AspNetCore.Identity
+@using PowerFIt.Models
+@inject SignInManager<Customer> SignInManager
+@inject UserManager<Customer> UserManager
+
+<!DOCTYPE html>
+<html lang="bg">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PowerFIt</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - Сила и действие</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PowerFIt.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PowerFIt</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container">
+                <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
+                    Сила и действие
+                </a>
+
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-controller="Products" asp-action="Index">Продукти</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Категории
+                            </a>
+                            <ul class="dropdown-menu custom-dropdown" aria-labelledby="categoriesDropdown">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Categories" asp-action="Index">
+                                        Всички категории
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider custom-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Протеини">
+                                        Протеини
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Fat-burners">
+                                        Fat-burners
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Креатин">
+                                        Креатин
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="BCAA">
+                                        BCAA
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="EAA">
+                                        EAA
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="DosageForms" asp-action="Index">Форми</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Orders" asp-action="Index">Поръчки</a>
+                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Админ панел
+                                </a>
+                                <ul class="dropdown-menu custom-dropdown" aria-labelledby="adminDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Products" asp-action="Create">Добави продукт</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Products" asp-action="Index">Управление на продукти</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Категории</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="DosageForms" asp-action="Index">Форми</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Orders" asp-action="Index">Поръчки</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
-                    <partial name="_LoginPartial" />
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link nav-user">
+                                    Здравей, @User.Identity?.Name
+                                </span>
+                            </li>
+
+                            <li class="nav-item">
+                                <form class="d-inline" asp-area="Identity" asp-page="/Account/Logout"
+                                      asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button type="submit" class="btn nav-btn-outline">Изход</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn nav-btn-outline me-2" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn nav-btn-solid" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container main-container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
+    <main class="page-wrapper">
         <div class="container">
-            &copy; 2026 - PowerFIt - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="content-shell">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-block">
+                    <h4>Сила и действие</h4>
+                    <p>
+                        Онлайн магазин за фитнес добавки с удобна система за продукти,
+                        категории, форми и поръчки.
+                    </p>
+                </div>
+
+                <div class="footer-links-block">
+                    <h5>Навигация</h5>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="Index">Начало</a></li>
+                        <li><a asp-controller="Products" asp-action="Index">Продукти</a></li>
+                        <li><a asp-controller="Categories" asp-action="Index">Категории</a></li>
+                        <li><a asp-controller="DosageForms" asp-action="Index">Форми</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-block">
+                    <h5>Потребител</h5>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Cart" asp-action="Index">Количка</a></li>
+                        <li><a asp-controller="Orders" asp-action="Index">Поръчки</a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Login">Вход</a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Register">Регистрация</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; @DateTime.Now.Year - Сила и действие</span>
+                <span>PowerFit</span>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

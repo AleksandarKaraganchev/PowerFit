@@ -1,89 +1,154 @@
 ﻿@model IEnumerable<PowerFIt.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Продукти";
 }
 
-<h1>Index</h1>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Продукти</h1>
+        <p class="page-subtitle">
+            Разгледайте наличните фитнес добавки по категории, форми и предпочитания.
+        </p>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categories)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DosageForms)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RecommendedFor)
-            </th>
-            <th>
-                Image
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MeasureUnit)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categories.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DosageForms.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecommendedFor)
-            </td>
-            <td>
-                    <img src="@item.Image" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MeasureUnit)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+    @if (User.IsInRole("Admin"))
+    {
+        <div>
+            <a asp-action="Create" class="btn hero-btn-primary">+ Добави нов продукт</a>
+        </div>
+    }
+</div>
+
+<div class="filter-panel">
+    <form asp-action="Index" method="get" class="filter-form">
+        <div class="filter-grid">
+            <div class="filter-field filter-search-field">
+                <label class="filter-label">Търсене</label>
+                <input type="text"
+                       name="searchTerm"
+                       value="@ViewBag.SearchTerm"
+                       class="form-control custom-input filter-search-input"
+                       placeholder="Търси по име или описание..." />
+            </div>
+
+            <div class="filter-field">
+                <label class="filter-label">Категория</label>
+                <select name="categoryId" class="form-select custom-input" asp-items="ViewBag.Categories">
+                    <option value="">Всички категории</option>
+                </select>
+            </div>
+
+            <div class="filter-field">
+                <label class="filter-label">Форма</label>
+                <select name="dosageFormId" class="form-select custom-input" asp-items="ViewBag.DosageForms">
+                    <option value="">Всички форми</option>
+                </select>
+            </div>
+
+            <div class="filter-field">
+                <label class="filter-label">Сортиране</label>
+                <select name="sortOrder" class="form-select custom-input">
+                    <option value="">Име (А-Я)</option>
+                    <option value="name_desc" selected="@(ViewBag.SortOrder == "name_desc")">Име (Я-А)</option>
+                    <option value="price_asc" selected="@(ViewBag.SortOrder == "price_asc")">Цена възходящо</option>
+                    <option value="price_desc" selected="@(ViewBag.SortOrder == "price_desc")">Цена низходящо</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="btn hero-btn-primary">Филтрирай</button>
+            <a asp-action="Index" class="btn hero-btn-secondary">Изчисти</a>
+        </div>
+    </form>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        <h3>Няма намерени продукти.</h3>
+        <p>Опитай с други критерии за търсене или филтриране.</p>
+    </div>
 }
-    </tbody>
-</table>
+else
+{
+    <div class="products-result-bar">
+        <span>Намерени продукти: <strong>@Model.Count()</strong></span>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-xl-4">
+                <div class="product-card">
+
+                    <div class="product-image-wrapper">
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="@item.Image" alt="@item.Name" class="product-image" />
+                        }
+                        else
+                        {
+                            <img src="/images/no-image.png" alt="Няма изображение" class="product-image" />
+                        }
+                    </div>
+
+                    <div class="product-card-top">
+                        <div class="product-badge">
+                            @(item.Categories?.Name ?? "Категория")
+                        </div>
+
+                        <div class="product-type">
+                            @(item.DosageForms?.Name ?? "Форма")
+                        </div>
+                    </div>
+                    <div class="product-price-badge">
+                        @item.Price.ToString("0.00") €
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-title">@item.Name</h3>
+
+                        <div class="product-meta">
+                            @if (!string.IsNullOrWhiteSpace(item.Description))
+                            {
+                                <p>
+                                    @(item.Description.Length > 120
+                                                            ? item.Description.Substring(0, 120) + "..."
+                                                            : item.Description)
+                    </p>
+                                        }
+                            else
+                            {
+                                <p>Няма добавено описание за този продукт.</p>
+                            }
+                        </div>
+
+                        <div class="product-info-list">
+                            <div><span>Цена:</span> @item.Price.ToString("0.00")€.</div>
+                            <div><span>Категория:</span> @(item.Categories?.Name ?? "-")</div>
+                            <div><span>Форма:</span> @(item.DosageForms?.Name ?? "-")</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card-actions">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn product-btn-secondary">
+                            Детайли
+                        </a>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">
+                                Редакция
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn product-btn-danger">
+                                Изтрий
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

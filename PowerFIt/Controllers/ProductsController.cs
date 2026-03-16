@@ -20,11 +20,70 @@ namespace PowerFIt.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+      string searchTerm,
+      int? categoryId,
+      int? dosageFormId,
+      string categoryName,
+      string sortOrder)
         {
-            var applicationDbContext = _context.Products.Include(p => p.Categories).Include(p => p.DosageForms);
-            return View(await applicationDbContext.ToListAsync());
+            var productsQuery = _context.Products
+                .Include(p => p.Categories)
+                .Include(p => p.DosageForms)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                productsQuery = productsQuery.Where(p =>
+                    p.Name.Contains(searchTerm) ||
+                    (p.Description != null && p.Description.Contains(searchTerm)));
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoryName))
+            {
+                productsQuery = productsQuery.Where(p => p.Categories != null && p.Categories.Name == categoryName);
+            }
+            else if (categoryId.HasValue)
+            {
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            if (dosageFormId.HasValue)
+            {
+                productsQuery = productsQuery.Where(p => p.DosageFormId == dosageFormId.Value);
+            }
+
+            productsQuery = sortOrder switch
+            {
+                "name_desc" => productsQuery.OrderByDescending(p => p.Name),
+                "price_asc" => productsQuery.OrderBy(p => p.Price),
+                "price_desc" => productsQuery.OrderByDescending(p => p.Price),
+                _ => productsQuery.OrderBy(p => p.Name)
+            };
+
+            ViewBag.Categories = new SelectList(
+                await _context.Categories.ToListAsync(),
+                "Id",
+                "Name",
+                categoryId
+            );
+
+            ViewBag.DosageForms = new SelectList(
+                await _context.DosageForms.ToListAsync(),
+                "Id",
+                "Name",
+                dosageFormId
+            );
+
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.SortOrder = sortOrder;
+            ViewBag.SelectedCategoryName = categoryName;
+
+            var products = await productsQuery.ToListAsync();
+
+            return View(products);
         }
+
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
