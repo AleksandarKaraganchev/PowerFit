@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PowerFIt.Data;
 using PowerFIt.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PowerFIt.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ProductsController(ApplicationDbContext context)
+        private readonly UserManager<Customer> _userManager;
+        public ProductsController(ApplicationDbContext context, UserManager<Customer> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Products
@@ -131,7 +134,6 @@ namespace PowerFIt.Controllers
             ViewData["DosageFormId"] = new SelectList(_context.DosageForms, "Id", "Name", product.DosageFormId);
             return View(product);
         }
-
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

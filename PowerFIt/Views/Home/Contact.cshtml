@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Контакти";
+}
+
+<div class="info-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Контакти</h1>
+            <p class="page-subtitle">
+                Свържете се с нас чрез формата по-долу.
+            </p>
+        </div>
+    </div>
+
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert-success-custom">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert-error-custom">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="product-form-card">
+                <h2>Изпрати съобщение</h2>
+
+                <form asp-action="Contact" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-field">
+                        <label class="form-label">Име</label>
+                        <input type="text" name="name" value="@ViewBag.Name" class="form-control custom-input" />
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">Имейл</label>
+                        <input type="email" name="email" value="@ViewBag.Email" class="form-control custom-input" />
+                    </div>
+
+                    <div class="form-field form-field-full">
+                        <label class="form-label">Съобщение</label>
+                        <textarea name="message" rows="5" class="form-control custom-input custom-textarea">@ViewBag.Message</textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn hero-btn-primary">
+                            Изпрати
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="info-panel accent-panel">
+                <h2>Информация за контакт</h2>
+
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span>Имейл</span>
+                        <strong>powerfit@example.com</strong>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>Телефон</span>
+                        <strong>+359 888 123 456</strong>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>Адрес</span>
+                        <strong>гр. София, България</strong>
+                    </div>
+
+                    <div class="contact-item">
+                        <span>Работно време</span>
+                        <strong>Понеделник - Петък, 09:00 - 18:00</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

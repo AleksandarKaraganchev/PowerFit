@@ -27,8 +27,15 @@ namespace PowerFIt.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.Customers).Include(o => o.Products);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = _userManager.GetUserId(User);
+
+            var orders = await _context.Orders
+                .Include(o => o.Products)
+                .Where(o => o.CustomerId == userId)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+
+            return View(orders);
         }
 
         // GET: Orders/Details/5
@@ -66,6 +73,11 @@ namespace PowerFIt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,Quantity,Description")] Order order)
         {
+            if (order.Quantity <= 0)
+            {
+                order.Quantity = 1;
+            }
+
             if (ModelState.IsValid)
             {
                 order.OrderDate = DateTime.Now;
@@ -74,7 +86,7 @@ namespace PowerFIt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
@@ -105,6 +117,12 @@ namespace PowerFIt.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,Quantity,Description")] Order order)
         {
             order.OrderDate = DateTime.Now;
+
+            if (order.Quantity <= 0)
+            {
+                order.Quantity = 1;
+            }
+
             if (id != order.Id)
             {
                 return NotFound();
@@ -131,7 +149,7 @@ namespace PowerFIt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
@@ -174,6 +192,44 @@ namespace PowerFIt.Controllers
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.Id == id);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateOrderFromProduct(int productId, int quantity = 1)
+        {
+            var userId = _userManager.GetUserId(User);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Challenge();
+            }
+
+            var product = await _context.Products
+                .FirstOrDefaultAsync(p => p.Id == productId);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            if (quantity <= 0)
+            {
+                quantity = 1;
+            }
+
+            var order = new Order
+            {
+                ProductId = product.Id,
+                CustomerId = userId,
+                Quantity = quantity,
+                Description = $"Поръчка за продукт: {product.Name}",
+                OrderDate = DateTime.Now
+            };
+
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

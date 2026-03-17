@@ -135,7 +135,15 @@ else
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn product-btn-secondary">
                             Детайли
                         </a>
-
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                        {
+                            <form asp-controller="Orders" asp-action="CreateOrderFromProduct" method="post">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="btn hero-btn-primary">
+                                    Поръчай
+                                </button>
+                            </form>
+                        }
                         @if (User.IsInRole("Admin"))
                         {
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">

@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PowerFIt")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e9291347c736435881c46c9e30ddbd357ddb3cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d880749ff4bbe02c596b8555e5a5109a57ddeba")]
 [assembly: System.Reflection.AssemblyProductAttribute("PowerFIt")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PowerFIt")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

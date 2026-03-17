@@ -71,6 +71,11 @@
                                         EAA
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Здравословни храни">
+                                        Здравословни храни
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -80,6 +85,13 @@
 
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Orders" asp-action="Index">Поръчки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="About">За нас</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">Контакти</a>
                         </li>
 
                         @if (User.IsInRole("Admin"))

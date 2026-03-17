@@ -1362,3 +1362,212 @@ select.custom-input option {
     color: var(--text-soft);
     font-size: 0.95rem;
 }
+.quantity-control {
+    margin-bottom: 15px;
+}
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    background: #2fbfa2;
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.quantity-input {
+    width: 70px;
+    text-align: center;
+    background: #1e293b;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 5px;
+}
+.order-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+    .order-card:hover {
+        transform: translateY(-4px);
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+.order-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.order-badge {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(61, 217, 184, 0.12);
+    border: 1px solid rgba(61, 217, 184, 0.22);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.order-date {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.order-card-body {
+    flex: 1;
+}
+
+.order-title {
+    color: var(--text-main);
+    font-size: 1.35rem;
+    margin-bottom: 14px;
+    font-weight: 800;
+}
+
+.order-info-list {
+    display: grid;
+    gap: 10px;
+}
+
+    .order-info-list div {
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-main);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .order-info-list span {
+        color: var(--accent);
+        font-weight: 700;
+    }
+
+.order-card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+.info-page {
+    padding: 8px 0;
+}
+
+.info-hero-card {
+    padding: 28px;
+    border-radius: 24px;
+    background: radial-gradient(circle at top right, rgba(61, 217, 184, 0.14), transparent 35%), rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+}
+
+.info-hero-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    margin-bottom: 16px;
+    border-radius: 999px;
+    background: rgba(61, 217, 184, 0.12);
+    border: 1px solid rgba(61, 217, 184, 0.22);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.info-hero-title {
+    color: var(--text-main);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.info-hero-text {
+    color: var(--text-soft);
+    line-height: 1.8;
+    margin-bottom: 0;
+    max-width: 900px;
+}
+
+.info-wide-card {
+    padding: 26px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+    .info-wide-card h2 {
+        color: var(--text-main);
+        margin-bottom: 14px;
+    }
+
+.contact-list {
+    display: grid;
+    gap: 14px;
+}
+
+.contact-item {
+    padding: 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+    .contact-item span {
+        display: block;
+        color: var(--accent);
+        font-size: 0.92rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .contact-item strong {
+        color: var(--text-main);
+        font-size: 1rem;
+    }
+
+.contact-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.alert-success-custom {
+    background: rgba(61, 217, 184, 0.12);
+    border: 1px solid rgba(61, 217, 184, 0.25);
+    color: #3dd9b8;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.alert-error-custom {
+    background: rgba(255, 107, 107, 0.12);
+    border: 1px solid rgba(255, 107, 107, 0.25);
+    color: #ff8c8c;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}

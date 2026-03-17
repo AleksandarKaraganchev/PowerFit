@@ -88,20 +88,77 @@
                 </div>
 
                 <div class="details-actions">
-                    <a asp-action="Index" class="btn hero-btn-secondary">Назад към продуктите</a>
+                    <div class="details-actions">
 
-                    @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
-                    {
-                        <a href="#" class="btn hero-btn-primary">Добави в количката</a>
-                    }
+                        <a asp-action="Index" class="btn hero-btn-secondary">
+                            Назад към продуктите
+                        </a>
 
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn product-btn-warning">Редакция</a>
-                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn product-btn-danger">Изтрий</a>
-                    }
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                        {
+                            <form asp-controller="Orders" asp-action="CreateOrderFromProduct" method="post" class="order-form">
+
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden" name="productId" value="@Model.Id" />
+
+                                <div class="quantity-control">
+
+                                    <label>Количество</label>
+
+                                    <div class="quantity-box">
+
+                                        <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+
+                                        <input type="number"
+                                               id="quantityInput"
+                                               name="quantity"
+                                               value="1"
+                                               min="1"
+                                               class="quantity-input" />
+
+                                        <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+
+                                    </div>
+
+                                </div>
+
+                                <button type="submit" class="btn hero-btn-primary">
+                                    Поръчай
+                                </button>
+
+                            </form>
+                        }
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn product-btn-warning">Редакция</a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn product-btn-danger">Изтрий</a>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+    function increaseQty() {
+
+        var input = document.getElementById("quantityInput");
+        input.value = parseInt(input.value) + 1;
+
+    }
+
+    function decreaseQty() {
+
+        var input = document.getElementById("quantityInput");
+
+        if (input.value > 1) {
+            input.value = parseInt(input.value) - 1;
+        }
+
+    }
+
+</script>
