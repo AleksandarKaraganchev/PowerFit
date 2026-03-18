@@ -1,0 +1,118 @@
+﻿@model List<PowerFIt.Models.CheckoutItem>
+
+@{
+    ViewData["Title"] = "Моята количка";
+    var total = Model.Sum(x => x.Price * x.Quantity);
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Моята количка</h1>
+        <p class="page-subtitle">
+            Преглед на избраните продукти преди финализиране.
+        </p>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        <h3>Количката е празна</h3>
+        <p>Добави продукти от страницата с продукти.</p>
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-12">
+                <div class="checkout-card">
+
+                    <div>
+                        @if (!string.IsNullOrWhiteSpace(item.Image))
+                        {
+                            <img src="@item.Image" class="checkout-image" />
+                        }
+                        else
+                        {
+                            <img src="/images/no-image.png" class="checkout-image" />
+                        }
+                    </div>
+
+                    <div>
+                        <h3>@item.ProductName</h3>
+
+                        <div>
+                            Цена: @item.Price.ToString("0.00") €
+                        </div>
+
+                        <form asp-action="UpdateQuantity" method="post" class="checkout-qty-form">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+
+                            <div class="quantity-box">
+                                <button type="button" class="qty-btn" onclick="changeQty(this, -1)">-</button>
+
+                                <input type="number"
+                                       name="quantity"
+                                       value="@item.Quantity"
+                                       min="1"
+                                       class="quantity-input" />
+
+                                <button type="button" class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                            </div>
+
+                            <button type="submit" class="btn product-btn-warning">
+                                Обнови
+                            </button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <div>
+                            Общо: @((item.Price* item.Quantity).ToString("0.00")) €
+                        </div>
+
+                        <form asp-action="Remove" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn product-btn-danger">
+                                Премахни
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="checkout-summary">
+        <h3>Крайна сума: @total.ToString("0.00") €</h3>
+
+        <form asp-action="FinalizeOrder" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn hero-btn-primary">
+                Финализирай поръчката
+            </button>
+        </form>
+    </div>
+}
+@section Scripts {
+    <script>
+        function changeQty(button, delta) {
+            const box = button.closest('.quantity-box');
+            const input = box.querySelector('input[type="number"]');
+
+            let value = parseInt(input.value) || 1;
+            value += delta;
+
+            if (value < 1) {
+                value = 1;
+            }
+
+            input.value = value;
+        }
+    </script>
+}

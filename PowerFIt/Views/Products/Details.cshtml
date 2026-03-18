@@ -96,18 +96,13 @@
 
                         @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                         {
-                            <form asp-controller="Orders" asp-action="CreateOrderFromProduct" method="post" class="order-form">
-
+                            <form asp-controller="Checkout" asp-action="Add" method="post" class="order-form">
                                 @Html.AntiForgeryToken()
-
                                 <input type="hidden" name="productId" value="@Model.Id" />
 
                                 <div class="quantity-control">
-
                                     <label>Количество</label>
-
                                     <div class="quantity-box">
-
                                         <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
 
                                         <input type="number"
@@ -118,15 +113,12 @@
                                                class="quantity-input" />
 
                                         <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
-
                                     </div>
-
                                 </div>
 
                                 <button type="submit" class="btn hero-btn-primary">
                                     Поръчай
                                 </button>
-
                             </form>
                         }
 

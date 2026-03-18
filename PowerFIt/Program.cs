@@ -26,6 +26,8 @@ namespace PowerFIt
             builder.Services.AddControllersWithViews();
             builder.Services.AddControllers(op => op.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
             builder.Services.AddRazorPages();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -50,6 +52,7 @@ namespace PowerFIt
             app.UseAuthorization();
 
             app.MapStaticAssets();
+            app.UseSession();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")
