@@ -66,7 +66,10 @@
                                                         : Model.RecommendedFor)
                         </strong>
                     </div>
-
+                    <div class="details-info-item">
+                        <span>Наличност</span>
+                        <strong>@Model.Quantity бр.</strong>
+                    </div>
                     <div class="details-info-item">
                         <span>Цена</span>
                         <strong>@Model.Price.ToString("0.00") €</strong>
@@ -96,30 +99,40 @@
 
                         @if (User.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
                         {
-                            <form asp-controller="Checkout" asp-action="Add" method="post" class="order-form">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="productId" value="@Model.Id" />
+                            if (Model.Quantity > 0)
+                            {
+                                <form asp-controller="Checkout" asp-action="Add" method="post" class="order-form">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="productId" value="@Model.Id" />
 
-                                <div class="quantity-control">
-                                    <label>Количество</label>
-                                    <div class="quantity-box">
-                                        <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+                                    <div class="quantity-control">
+                                        <label>Количество</label>
+                                        <div class="quantity-box">
+                                            <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
 
-                                        <input type="number"
-                                               id="quantityInput"
-                                               name="quantity"
-                                               value="1"
-                                               min="1"
-                                               class="quantity-input" />
+                                            <input type="number"
+                                                   id="quantityInput"
+                                                   name="quantity"
+                                                   value="1"
+                                                   min="1"
+                                                   max="@Model.Quantity"
+                                                   class="quantity-input" />
 
-                                        <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+                                            <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <button type="submit" class="btn hero-btn-primary">
-                                    Поръчай
+                                    <button type="submit" class="btn hero-btn-primary">
+                                        Поръчай
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn product-btn-danger" disabled>
+                                    Продуктът е изчерпан
                                 </button>
-                            </form>
+                            }
                         }
 
                         @if (User.IsInRole("Admin"))
@@ -153,4 +166,24 @@
 
     }
 
+</script>
+<script>
+    function increaseQty() {
+        var input = document.getElementById("quantityInput");
+        var max = parseInt(input.max) || 1;
+        var current = parseInt(input.value) || 1;
+
+        if (current < max) {
+            input.value = current + 1;
+        }
+    }
+
+    function decreaseQty() {
+        var input = document.getElementById("quantityInput");
+        var current = parseInt(input.value) || 1;
+
+        if (current > 1) {
+            input.value = current - 1;
+        }
+    }
 </script>

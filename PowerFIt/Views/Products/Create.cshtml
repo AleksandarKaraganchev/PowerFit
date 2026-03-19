@@ -59,6 +59,11 @@
                     <input asp-for="MeasureUnit" class="form-control custom-input" />
                     <span asp-validation-for="MeasureUnit" class="text-danger"></span>
                 </div>
+                <div class="form-field">
+                    <label asp-for="Quantity" class="form-label">Наличност</label>
+                    <input asp-for="Quantity" class="form-control custom-input" min="0" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
                 <div class="form-field form-field-full">
                     <label asp-for="RecommendedFor" class="form-label">Предназначение</label>
                     <input asp-for="RecommendedFor" class="form-control custom-input" />

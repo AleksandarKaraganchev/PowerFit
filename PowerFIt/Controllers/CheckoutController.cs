@@ -43,9 +43,24 @@ namespace PowerFIt.Controllers
                 return NotFound();
             }
 
-            var items = GetCheckoutItems();
+            if (product.Quantity <= 0)
+            {
+                TempData["ErrorMessage"] = "Продуктът не е наличен.";
+                return RedirectToAction("Details", "Products", new { id = productId });
+            }
 
+            var items = GetCheckoutItems();
             var existingItem = items.FirstOrDefault(x => x.ProductId == productId);
+
+            var currentQuantityInCheckout = existingItem?.Quantity ?? 0;
+            var requestedTotal = currentQuantityInCheckout + quantity;
+
+            if (requestedTotal > product.Quantity)
+            {
+                TempData["ErrorMessage"] = $"Налични са само {product.Quantity} бр. от продукта.";
+                return RedirectToAction("Details", "Products", new { id = productId });
+            }
+
             if (existingItem != null)
             {
                 existingItem.Quantity += quantity;
@@ -69,36 +84,38 @@ namespace PowerFIt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateQuantity(int productId, int quantity)
+        public async Task<IActionResult> UpdateQuantity(int productId, int quantity)
         {
             var items = GetCheckoutItems();
             var item = items.FirstOrDefault(x => x.ProductId == productId);
 
-            if (item != null)
+            if (item == null)
             {
-                item.Quantity = quantity < 1 ? 1 : quantity;
-                SaveCheckoutItems(items);
+                return RedirectToAction(nameof(Index));
             }
+
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
+            if (product == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (quantity < 1)
+            {
+                quantity = 1;
+            }
+
+            if (quantity > product.Quantity)
+            {
+                TempData["ErrorMessage"] = $"Налични са само {product.Quantity} бр. от {product.Name}.";
+                quantity = product.Quantity > 0 ? product.Quantity : 1;
+            }
+
+            item.Quantity = quantity;
+            SaveCheckoutItems(items);
 
             return RedirectToAction(nameof(Index));
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Remove(int productId)
-        {
-            var items = GetCheckoutItems();
-            var item = items.FirstOrDefault(x => x.ProductId == productId);
-
-            if (item != null)
-            {
-                items.Remove(item);
-                SaveCheckoutItems(items);
-            }
-
-            return RedirectToAction(nameof(Index));
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FinalizeOrder()
@@ -118,6 +135,25 @@ namespace PowerFIt.Controllers
 
             foreach (var item in items)
             {
+                var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == item.ProductId);
+
+                if (product == null)
+                {
+                    TempData["ErrorMessage"] = "Един от продуктите вече не съществува.";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                if (product.Quantity < item.Quantity)
+                {
+                    TempData["ErrorMessage"] = $"Недостатъчна наличност за {product.Name}. Налични: {product.Quantity} бр.";
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
+            foreach (var item in items)
+            {
+                var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == item.ProductId);
+
                 var order = new Order
                 {
                     ProductId = item.ProductId,
@@ -126,6 +162,8 @@ namespace PowerFIt.Controllers
                     Description = $"Поръчка за продукт: {item.ProductName}",
                     OrderDate = DateTime.Now
                 };
+
+                product.Quantity -= item.Quantity;
 
                 _context.Orders.Add(order);
             }
