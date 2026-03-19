@@ -50,6 +50,7 @@ else
                         </h3>
 
                         <div class="order-info-list">
+                            <div><span>Потребител:</span> @(item.Customers?.UserName ?? "-")</div>
                             <div><span>Количество:</span> @item.Quantity</div>
                             <div><span>Дата:</span> @item.OrderDate</div>
                             <div><span>Описание:</span> @(string.IsNullOrWhiteSpace(item.Description) ? "-" : item.Description)</div>

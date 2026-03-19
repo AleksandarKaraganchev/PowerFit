@@ -13,6 +13,26 @@
         </p>
     </div>
 </div>
+@if (TempData["StockMessage"] != null)
+{
+    <div class="stock-warning-box">
+        <p>@TempData["StockMessage"]</p>
+
+        <form asp-controller="Checkout" asp-action="ConfirmAvailableQuantity" method="post" class="stock-warning-actions">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="productId" value="@TempData["StockProductId"]" />
+            <input type="hidden" name="quantity" value="@TempData["AvailableQty"]" />
+
+            <button type="submit" class="btn hero-btn-primary">
+                Да, поръчай @TempData["AvailableQty"] бр.
+            </button>
+
+            <a asp-action="Index" class="btn hero-btn-secondary">
+                Не
+            </a>
+        </form>
+    </div>
+}
 
 @if (!Model.Any())
 {
@@ -71,7 +91,7 @@ else
 
                     <div>
                         <div>
-                            Общо: @((item.Price* item.Quantity).ToString("0.00")) €
+                            Общо: @((item.Price * item.Quantity).ToString("0.00")) €
                         </div>
 
                         <form asp-action="Remove" method="post">

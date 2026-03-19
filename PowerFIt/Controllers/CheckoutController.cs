@@ -107,8 +107,11 @@ namespace PowerFIt.Controllers
 
             if (quantity > product.Quantity)
             {
-                TempData["ErrorMessage"] = $"Налични са само {product.Quantity} бр. от {product.Name}.";
-                quantity = product.Quantity > 0 ? product.Quantity : 1;
+                TempData["StockProductId"] = productId;
+                TempData["RequestedQty"] = quantity;
+                TempData["AvailableQty"] = product.Quantity;
+                TempData["StockMessage"] = $"Налични са само {product.Quantity} бр. от {product.Name}.";
+                return RedirectToAction(nameof(Index));
             }
 
             item.Quantity = quantity;
@@ -203,6 +206,36 @@ namespace PowerFIt.Controllers
             var items = System.Text.Json.JsonSerializer.Deserialize<List<CheckoutItem>>(data);
 
             return items?.Sum(x => x.Quantity) ?? 0;
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConfirmAvailableQuantity(int productId, int quantity)
+        {
+            var items = GetCheckoutItems();
+            var item = items.FirstOrDefault(x => x.ProductId == productId);
+
+            if (item != null)
+            {
+                item.Quantity = quantity < 1 ? 1 : quantity;
+                SaveCheckoutItems(items);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Remove(int productId)
+        {
+            var items = GetCheckoutItems();
+            var item = items.FirstOrDefault(x => x.ProductId == productId);
+
+            if (item != null)
+            {
+                items.Remove(item);
+                SaveCheckoutItems(items);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

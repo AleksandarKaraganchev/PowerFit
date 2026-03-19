@@ -1688,3 +1688,42 @@ select.custom-input option {
     border-radius: 999px;
     margin-left: 6px;
 }
+.stock-warning-box {
+    margin-bottom: 20px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 193, 7, 0.12);
+    border: 1px solid rgba(255, 193, 7, 0.22);
+    color: #ffd666;
+}
+
+    .stock-warning-box p {
+        margin-bottom: 14px;
+        font-weight: 600;
+    }
+
+.stock-warning-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.alert-success-custom {
+    background: rgba(61, 217, 184, 0.12);
+    border: 1px solid rgba(61, 217, 184, 0.25);
+    color: #3dd9b8;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.alert-error-custom {
+    background: rgba(255, 107, 107, 0.12);
+    border: 1px solid rgba(255, 107, 107, 0.25);
+    color: #ff8c8c;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
