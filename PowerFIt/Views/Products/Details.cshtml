@@ -12,7 +12,12 @@
             </div>
 
             <h1 class="details-title">@Model.Name</h1>
-
+            @if (Model.Quantity <= 5 && Model.Quantity > 0)
+            {
+                <div class="low-stock-badge">
+                    ⚠ Остават само @Model.Quantity бр.!
+                </div>
+            }
             <p class="details-subtitle">
                 Подробна информация за избрания продукт.
             </p>
@@ -48,6 +53,7 @@
                         <span>Име</span>
                         <strong>@Model.Name</strong>
                     </div>
+                 
 
                     <div class="details-info-item">
                         <span>Категория</span>

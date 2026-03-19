@@ -116,12 +116,13 @@ else
                                     @(item.Description.Length > 120
                                                             ? item.Description.Substring(0, 120) + "..."
                                                             : item.Description)
-                    </p>
+                               </p>
                                         }
                             else
                             {
                                 <p>Няма добавено описание за този продукт.</p>
                             }
+
                         </div>
 
                         <div class="product-info-list">
@@ -130,6 +131,12 @@ else
                             <div><span>Форма:</span> @(item.DosageForms?.Name ?? "-")</div>
                             <div><span>Наличност:</span> @item.Quantity бр.</div>
                         </div>
+                        @if (item.Quantity <= 5 && item.Quantity > 0)
+                        {
+                            <div class="low-stock-badge">
+                                ⚠ Остават малко бройки!
+                            </div>
+                        }
                     </div>
 
                     <div class="product-card-actions">
@@ -156,7 +163,7 @@ else
                                 </button>
                             }
                         }
-                       
+
                         @if (User.IsInRole("Admin"))
                         {
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">

@@ -27,11 +27,18 @@ namespace PowerFIt.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var userId = _userManager.GetUserId(User);
-
-            var orders = await _context.Orders
+            var ordersQuery = _context.Orders
+                .Include(o => o.Customers)
                 .Include(o => o.Products)
-                .Where(o => o.CustomerId == userId)
+                .AsQueryable();
+
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = _userManager.GetUserId(User);
+                ordersQuery = ordersQuery.Where(o => o.CustomerId == userId);
+            }
+
+            var orders = await ordersQuery
                 .OrderByDescending(o => o.OrderDate)
                 .ToListAsync();
 
@@ -50,9 +57,19 @@ namespace PowerFIt.Controllers
                 .Include(o => o.Customers)
                 .Include(o => o.Products)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (order == null)
             {
                 return NotFound();
+            }
+
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = _userManager.GetUserId(User);
+                if (order.CustomerId != userId)
+                {
+                    return Forbid();
+                }
             }
 
             return View(order);
@@ -92,6 +109,7 @@ namespace PowerFIt.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,14 +122,24 @@ namespace PowerFIt.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "Name", order.CustomerId);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = _userManager.GetUserId(User);
+                if (order.CustomerId != userId)
+                {
+                    return Forbid();
+                }
+            }
+
+            ViewData["CustomerId"] = new SelectList(_context.Users, "Id", "UserName", order.CustomerId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", order.ProductId);
             return View(order);
         }
-
         // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ProductId,Quantity,Description")] Order order)
@@ -155,6 +183,7 @@ namespace PowerFIt.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -166,26 +195,50 @@ namespace PowerFIt.Controllers
                 .Include(o => o.Customers)
                 .Include(o => o.Products)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (order == null)
             {
                 return NotFound();
             }
 
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = _userManager.GetUserId(User);
+                if (order.CustomerId != userId)
+                {
+                    return Forbid();
+                }
+            }
+
             return View(order);
         }
+
 
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var order = await _context.Orders.FindAsync(id);
-            if (order != null)
+
+            if (order == null)
             {
-                _context.Orders.Remove(order);
+                return RedirectToAction(nameof(Index));
             }
 
+            if (!User.IsInRole("Admin"))
+            {
+                var userId = _userManager.GetUserId(User);
+                if (order.CustomerId != userId)
+                {
+                    return Forbid();
+                }
+            }
+
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

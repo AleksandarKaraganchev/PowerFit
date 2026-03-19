@@ -1727,3 +1727,14 @@ select.custom-input option {
     margin-bottom: 20px;
     font-weight: 600;
 }
+.low-stock-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    color: #ffd666;
+    font-size: 13px;
+    font-weight: 700;
+}

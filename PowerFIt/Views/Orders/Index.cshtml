@@ -6,10 +6,22 @@
 
 <div class="page-header">
     <div>
-        <h1 class="page-title">Моите поръчки</h1>
-        <p class="page-subtitle">
-            Преглед на всички направени поръчки в системата.
-        </p>
+        @if (User.IsInRole("Admin"))
+        {
+            <h1 class="page-title">Всички поръчки</h1>
+        }
+        else
+        {
+            <h1 class="page-title">Моите поръчки</h1>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <p class="page-subtitle">Преглед на всички поръчки в системата.</p>
+        }
+        else
+        {
+            <p class="page-subtitle">Преглед на вашите поръчки.</p>
+        }
     </div>
 </div>
 
@@ -57,19 +69,7 @@ else
                         </div>
                     </div>
 
-                    <div class="order-card-actions">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn product-btn-secondary">
-                            Детайли
-                        </a>
-
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">
-                            Редакция
-                        </a>
-
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn product-btn-danger">
-                            Изтрий
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
         }
