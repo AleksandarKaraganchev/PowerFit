@@ -1738,3 +1738,121 @@ select.custom-input option {
     font-size: 13px;
     font-weight: 700;
 }
+.profile-page {
+    padding: 8px 0;
+}
+
+.profile-card,
+.profile-orders-card {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+}
+
+.profile-avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #08131b;
+    background: var(--accent);
+}
+
+.profile-name {
+    color: var(--text-main);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.profile-info-list {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.profile-info-item {
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+    .profile-info-item span {
+        display: block;
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+
+    .profile-info-item strong {
+        color: var(--text-main);
+    }
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.profile-orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+    .profile-orders-header h2 {
+        color: var(--text-main);
+        margin-bottom: 0;
+    }
+
+.profile-orders-list {
+    display: grid;
+    gap: 14px;
+}
+
+.profile-order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+}
+
+    .profile-order-item h3 {
+        color: var(--text-main);
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+
+    .profile-order-item p {
+        margin-bottom: 0;
+        color: var(--text-soft);
+    }
+
+.profile-link {
+    font-weight: 700;
+}
+
+@media (max-width: 991px) {
+    .profile-order-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

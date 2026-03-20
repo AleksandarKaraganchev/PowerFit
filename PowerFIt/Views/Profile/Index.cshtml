@@ -1,0 +1,92 @@
+﻿@model PowerFIt.Models.Customer
+@using PowerFIt.Models
+@{
+    ViewData["Title"] = "Моят профил";
+    var orders = ViewBag.UserOrders as List<Order> ?? new List<Order>();
+}
+
+<div class="profile-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Моят профил</h1>
+            <p class="page-subtitle">
+                Преглед на вашата информация и последните ви поръчки.
+            </p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-5">
+            <div class="profile-card">
+                <div class="profile-avatar">
+                    @((Model.UserName != null && Model.UserName.Length > 0) ? Model.UserName.Substring(0, 1).ToUpper() : "U")
+                </div>
+
+                <h2 class="profile-name">@Model.UserName</h2>
+
+                <div class="profile-info-list">
+                    <div class="profile-info-item">
+                        <span>Потребителско име</span>
+                        <strong>@(Model.UserName ?? "-")</strong>
+                    </div>
+
+                    <div class="profile-info-item">
+                        <span>Имейл</span>
+                        <strong>@(Model.Email ?? "-")</strong>
+                    </div>
+
+                    <div class="profile-info-item">
+                        <span>Телефон</span>
+                        <strong>@(Model.PhoneNumber ?? "-")</strong>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <a asp-controller="Orders" asp-action="Index" class="btn hero-btn-primary">
+                        Моите поръчки
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="profile-orders-card">
+                <div class="profile-orders-header">
+                    <h2>Последни поръчки</h2>
+                    <a asp-controller="Orders" asp-action="Index" class="btn product-btn-secondary">
+                        Виж всички
+                    </a>
+                </div>
+
+                @if (!orders.Any())
+                {
+                    <div class="empty-state">
+                        <h3>Нямате направени поръчки</h3>
+                        <p>Когато направите поръчка, тя ще се появи тук.</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="profile-orders-list">
+                        @foreach (var order in orders)
+                        {
+                            <div class="profile-order-item">
+                                <div>
+                                    <h3>@(order.Products?.Name ?? "Продукт")</h3>
+                                    <p>
+                                        Количество: @order.Quantity |
+                                        Дата: @order.OrderDate.ToString("dd.MM.yyyy HH:mm")
+                                    </p>
+                                </div>
+
+                                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn product-btn-secondary">
+                                    Детайли
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
