@@ -1187,4 +1187,4 @@ C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\PowerFIt.genruntimeconfig.cache
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\ref\PowerFIt.dll
 C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\3cnh8d1dr7-4n19scvwov.gz
-C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\owcsbosyvj-7hdjks7ve7.gz
+C:\Users\HP bbd\Desktop\PowerFit-main - Copy\PowerFit\PowerFIt\obj\Debug\net9.0\compressed\owcsbosyvj-1lbo6rmsmn.gz

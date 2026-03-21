@@ -28,10 +28,14 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg custom-navbar">
+        <nav class="navbar navbar-expand-xl custom-navbar">
             <div class="container">
                 <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
-                    Сила и действие
+                    <span class="brand-mark">PF</span>
+                    <span class="brand-text-wrap">
+                        <span class="brand-text-main">Сила и действие</span>
+                        <span class="brand-text-sub">fitness supplements store</span>
+                    </span>
                 </a>
 
                 <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -40,7 +44,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav me-auto align-items-lg-center">
+                    <ul class="navbar-nav mx-auto align-items-xl-center main-nav-list">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
@@ -48,6 +52,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Products" asp-action="Index">Продукти</a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Категории
@@ -85,8 +90,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Здравословни храни">
-                                        Здравословни храни
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Храни">
+                                        Храни
                                     </a>
                                 </li>
                             </ul>
@@ -95,6 +100,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="DosageForms" asp-action="Index">Форми</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="About">За нас</a>
                         </li>
@@ -106,45 +112,23 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle admin-link" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Админ панел
                                 </a>
                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="adminDropdown">
-                                    <li>
-                                        <a class="dropdown-item" asp-controller="Products" asp-action="Create">Добави продукт</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-controller="Products" asp-action="Index">Управление на продукти</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Категории</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-controller="DosageForms" asp-action="Index">Форми</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-controller="Orders" asp-action="Index">Поръчки</a>
-                                    </li>
+                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="Create">Добави продукт</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Управление на продукти</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Categories" asp-action="Index">Категории</a></li>
+                                    <li><a class="dropdown-item" asp-controller="DosageForms" asp-action="Index">Форми</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Orders" asp-action="Index">Поръчки</a></li>
                                 </ul>
                             </li>
                         }
                     </ul>
 
-                    <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <ul class="navbar-nav ms-xl-auto align-items-xl-center nav-right-zone">
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link nav-user profile-link" asp-controller="Profile" asp-action="Index">
-                                    Здравей, @User.Identity?.Name
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <form class="d-inline" asp-area="Identity" asp-page="/Account/Logout"
-                                      asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="btn nav-btn-outline">Изход</button>
-                                </form>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link cart-link" asp-controller="Checkout" asp-action="Index">
                                     🛒 Количка
@@ -153,6 +137,31 @@
                                         <span class="cart-badge">@cartCount</span>
                                     }
                                 </a>
+                            </li>
+
+                            <li class="nav-item dropdown profile-dropdown-wrap">
+                                <a class="nav-link dropdown-toggle nav-user profile-link" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @User.Identity?.Name
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="profileDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
+                                            Моят профил
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
+                                            Моите поръчки
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider custom-divider" /></li>
+                                    <li>
+                                        <form class="px-2" asp-area="Identity" asp-page="/Account/Logout"
+                                              asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button type="submit" class="btn nav-btn-outline w-100">Изход</button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else
