@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit-main - copy\\powerfit\\powerfit\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit-main - copy\\powerfit\\powerfit\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -26,11 +30,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "PowerFIt\\Views\\Home\\Contact.cshtml",
+              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "PowerFIt\\Views\\Home\\Contact.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-23T06:48:34.508Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\Views\\Profile\\Index.cshtml",
               "RelativeDocumentMoniker": "PowerFIt\\Views\\Profile\\Index.cshtml",
@@ -42,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "PowerFIt\\wwwroot\\css\\site.css",
@@ -50,8 +66,7 @@
               "RelativeToolTip": "PowerFIt\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAAoIAAAAAAAAAAAqwDAIAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-19T14:22:44.54Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-19T14:22:44.54Z"
             },
             {
               "$type": "Document",
@@ -61,14 +76,14 @@
               "RelativeDocumentMoniker": "PowerFIt\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "PowerFIt\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAAAFwAAACUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-03-19T14:21:52.728Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit-main - Copy\\PowerFit\\PowerFIt\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "PowerFIt\\Controllers\\ProfileController.cs",
