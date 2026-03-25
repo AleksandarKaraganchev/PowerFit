@@ -145,6 +145,40 @@
                         {
                             <a asp-action="Edit" asp-route-id="@Model.Id" class="btn product-btn-warning">Редакция</a>
                             <a asp-action="Delete" asp-route-id="@Model.Id" class="btn product-btn-danger">Изтрий</a>
+                            if (Model.Quantity > 0)
+                            {
+                                <form asp-controller="Checkout" asp-action="Add" method="post" class="order-form">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                                    <div class="quantity-control">
+                                        <label>Количество</label>
+                                        <div class="quantity-box">
+                                            <button type="button" class="qty-btn" onclick="decreaseQty()">-</button>
+
+                                            <input type="number"
+                                                   id="quantityInput"
+                                                   name="quantity"
+                                                   value="1"
+                                                   min="1"
+                                                   max="@Model.Quantity"
+                                                   class="quantity-input" />
+
+                                            <button type="button" class="qty-btn" onclick="increaseQty()">+</button>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn hero-btn-primary">
+                                        Поръчай
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn product-btn-danger" disabled>
+                                    Продуктът е изчерпан
+                                </button>
+                            }
                         }
 
                     </div>

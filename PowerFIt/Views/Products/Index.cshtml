@@ -163,9 +163,25 @@ else
                                 </button>
                             }
                         }
-
                         @if (User.IsInRole("Admin"))
                         {
+                            if (item.Quantity > 0)
+                            {
+                                <form asp-controller="Checkout" asp-action="Add" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn hero-btn-primary">
+                                        Поръчай
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn product-btn-danger" disabled>
+                                    Изчерпан
+                                </button>
+                            }
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">
                                 Редакция
                             </a>
