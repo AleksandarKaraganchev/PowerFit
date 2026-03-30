@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PowerFIt.Models.Product>
+
+@{
+    ViewData["Title"] = "Ниска наличност";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Продукти с ниска наличност</h1>
+        <p class="page-subtitle">
+            Продукти, които са почти изчерпани и изискват внимание.
+        </p>
+    </div>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        <h3>Няма продукти с ниска наличност.</h3>
+        <p>Всички продукти са с достатъчно количество.</p>
+    </div>
+}
+else
+{
+    <div class="row g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-xl-4">
+                <div class="product-card">
+                    <div class="product-image-wrapper">
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <img src="@item.Image" alt="@item.Name" class="product-image" />
+                        }
+                        else
+                        {
+                            <img src="/images/no-image.png" alt="Няма изображение" class="product-image" />
+                        }
+                    </div>
+
+                    <div class="product-card-top">
+                        <div class="product-badge">
+                            @(item.Categories?.Name ?? "Категория")
+                        </div>
+
+                        <div class="product-type">
+                            @(item.DosageForms?.Name ?? "Форма")
+                        </div>
+                    </div>
+
+                    <div class="product-card-body">
+                        <h3 class="product-title">@item.Name</h3>
+
+                        <div class="low-stock-badge">
+                            ⚠ Остават само @item.Quantity бр.
+                        </div>
+
+                        <div class="product-info-list mt-3">
+                            <div><span>Цена:</span> @item.Price.ToString("0.00") €</div>
+                            <div><span>Предназначение:</span> @(string.IsNullOrWhiteSpace(item.RecommendedFor) ? "-" : item.RecommendedFor)</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card-actions">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn product-btn-secondary">
+                            Детайли
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">
+                            Редакция
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

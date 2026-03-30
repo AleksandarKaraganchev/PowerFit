@@ -229,5 +229,17 @@ namespace PowerFIt.Controllers
         {
             return _context.Products.Any(e => e.Id == id);
         }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> LowStock()
+        {
+            var lowStockProducts = await _context.Products
+                .Include(p => p.Categories)
+                .Include(p => p.DosageForms)
+                .Where(p => p.Quantity <= 5)
+                .OrderBy(p => p.Quantity)
+                .ToListAsync();
+
+            return View(lowStockProducts);
+        }
     }
 }
