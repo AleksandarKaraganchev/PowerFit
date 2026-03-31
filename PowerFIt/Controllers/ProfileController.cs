@@ -32,10 +32,12 @@ namespace PowerFIt.Controllers
                 .Include(o => o.Products)
                 .Where(o => o.CustomerId == user.Id)
                 .OrderByDescending(o => o.OrderDate)
-                .Take(5)
                 .ToListAsync();
 
-            ViewBag.UserOrders = orders;
+            ViewBag.UserOrders = orders.Take(5).ToList();
+            ViewBag.OrdersCount = orders.Count;
+            ViewBag.TotalProductsOrdered = orders.Sum(o => o.Quantity);
+            ViewBag.TotalSpent = orders.Sum(o => o.Products != null ? o.Products.Price * o.Quantity : 0);
 
             return View(user);
         }

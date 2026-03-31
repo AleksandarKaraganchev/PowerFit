@@ -59,6 +59,10 @@
                         <span>Дата</span>
                         <strong>@Model.OrderDate</strong>
                     </div>
+                    <div class="details-info-item">
+                        <span>Обща стойност</span>
+                        <strong>@((Model.Products != null ? Model.Products.Price * Model.Quantity : 0).ToString("0.00")) €</strong>
+                    </div>
                 </div>
 
                 <div class="details-description-box">

@@ -24,7 +24,35 @@
         }
     </div>
 </div>
+<div class="filter-panel">
+    <form asp-action="Index" method="get" class="filter-form">
+        <div class="filter-grid">
+            <div class="filter-field filter-search-field">
+                <label class="filter-label">Търсене по продукт</label>
+                <input type="text"
+                       name="searchTerm"
+                       value="@ViewBag.SearchTerm"
+                       class="form-control custom-input filter-search-input"
+                       placeholder="Търси по име на продукт..." />
+            </div>
 
+            <div class="filter-field">
+                <label class="filter-label">Период</label>
+                <select name="dateFilter" class="form-select custom-input">
+                    <option value="">Всички</option>
+                    <option value="today" selected="@(ViewBag.DateFilter == "today")">Днес</option>
+                    <option value="week" selected="@(ViewBag.DateFilter == "week")">Последните 7 дни</option>
+                    <option value="month" selected="@(ViewBag.DateFilter == "month")">Последния месец</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="btn hero-btn-primary">Филтрирай</button>
+            <a asp-action="Index" class="btn hero-btn-secondary">Изчисти</a>
+        </div>
+    </form>
+</div>
 @if (TempData["SuccessMessage"] != null)
 {
     <div class="cart-message">
@@ -66,6 +94,7 @@ else
                             <div><span>Количество:</span> @item.Quantity</div>
                             <div><span>Дата:</span> @item.OrderDate</div>
                             <div><span>Описание:</span> @(string.IsNullOrWhiteSpace(item.Description) ? "-" : item.Description)</div>
+                            <div><span>Обща стойност:</span> @((item.Products != null ? item.Products.Price * item.Quantity : 0).ToString("0.00")) €</div>
                         </div>
                     </div>
 

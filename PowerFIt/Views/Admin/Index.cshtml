@@ -1,0 +1,82 @@
+﻿@using PowerFIt.Models
+@{
+    ViewData["Title"] = "Админ панел";
+    var lowStockProducts = ViewBag.LowStockProducts as List<Product> ?? new List<Product>();
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Админ панел</h1>
+        <p class="page-subtitle">Преглед на основните данни в системата.</p>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="dashboard-card">
+            <h3>Продукти</h3>
+            <div class="dashboard-number">@ViewBag.ProductsCount</div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="dashboard-card">
+            <h3>Категории</h3>
+            <div class="dashboard-number">@ViewBag.CategoriesCount</div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="dashboard-card">
+            <h3>Форми</h3>
+            <div class="dashboard-number">@ViewBag.DosageFormsCount</div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-xl-3">
+        <div class="dashboard-card">
+            <h3>Поръчки</h3>
+            <div class="dashboard-number">@ViewBag.OrdersCount</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="dashboard-card">
+            <h2>Потребители</h2>
+            <div class="dashboard-number">@ViewBag.UsersCount</div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="dashboard-card">
+            <div class="dashboard-panel-header">
+                <h2>Ниска наличност</h2>
+                <a asp-controller="Products" asp-action="LowStock" class="btn product-btn-secondary">Виж всички</a>
+            </div>
+
+            @if (!lowStockProducts.Any())
+            {
+                <p class="text-muted mb-0">Няма продукти с ниска наличност.</p>
+            }
+            else
+            {
+                <div class="dashboard-lowstock-list">
+                    @foreach (var item in lowStockProducts)
+                    {
+                        <div class="dashboard-lowstock-item">
+                            <div>
+                                <strong>@item.Name</strong>
+                                <p class="mb-0">Остават @item.Quantity бр.</p>
+                            </div>
+                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id" class="btn product-btn-warning">
+                                Редакция
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

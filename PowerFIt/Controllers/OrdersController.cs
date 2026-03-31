@@ -25,7 +25,7 @@ namespace PowerFIt.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm, string dateFilter)
         {
             var ordersQuery = _context.Orders
                 .Include(o => o.Customers)
@@ -37,6 +37,29 @@ namespace PowerFIt.Controllers
                 var userId = _userManager.GetUserId(User);
                 ordersQuery = ordersQuery.Where(o => o.CustomerId == userId);
             }
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                ordersQuery = ordersQuery.Where(o =>
+                    o.Products != null &&
+                    o.Products.Name.Contains(searchTerm));
+            }
+
+            if (!string.IsNullOrWhiteSpace(dateFilter))
+            {
+                var today = DateTime.Today;
+
+                ordersQuery = dateFilter switch
+                {
+                    "today" => ordersQuery.Where(o => o.OrderDate.Date == today),
+                    "week" => ordersQuery.Where(o => o.OrderDate >= today.AddDays(-7)),
+                    "month" => ordersQuery.Where(o => o.OrderDate >= today.AddMonths(-1)),
+                    _ => ordersQuery
+                };
+            }
+
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.DateFilter = dateFilter;
 
             var orders = await ordersQuery
                 .OrderByDescending(o => o.OrderDate)

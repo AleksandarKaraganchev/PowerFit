@@ -41,6 +41,22 @@
                     </div>
                 </div>
 
+                <div class="profile-stats-grid">
+                    <div class="profile-stat-card">
+                        <span>Общо поръчки</span>
+                        <strong>@ViewBag.OrdersCount</strong>
+                    </div>
+
+                    <div class="profile-stat-card">
+                        <span>Общо продукти</span>
+                        <strong>@ViewBag.TotalProductsOrdered</strong>
+                    </div>
+
+                    <div class="profile-stat-card">
+                        <span>Общо похарчено</span>
+                        <strong>@(((decimal)ViewBag.TotalSpent).ToString("0.00")) €</strong>
+                    </div>
+                </div>
                 <div class="profile-actions">
                     <a asp-controller="Orders" asp-action="Index" class="btn hero-btn-primary">
                         Моите поръчки
