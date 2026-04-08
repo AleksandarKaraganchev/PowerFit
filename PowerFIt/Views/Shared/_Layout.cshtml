@@ -15,7 +15,10 @@
         cartCount = items?.Sum(x => x.Quantity) ?? 0;
     }
 }
-
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
 <!DOCTYPE html>
 <html lang="bg">
 <head>
