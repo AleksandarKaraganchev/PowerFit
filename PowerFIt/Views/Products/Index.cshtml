@@ -45,7 +45,12 @@
                     <option value="">Всички форми</option>
                 </select>
             </div>
-
+            <div class="filter-field">
+                <label class="filter-label">Предназначение</label>
+                <select name="recommendedFor" class="form-select custom-input" asp-items="ViewBag.RecommendedForOptions">
+                    <option value="">Всички предназначения</option>
+                </select>
+            </div>
             <div class="filter-field">
                 <label class="filter-label">Сортиране</label>
                 <select name="sortOrder" class="form-select custom-input">
@@ -116,7 +121,7 @@ else
                                     @(item.Description.Length > 120
                                                             ? item.Description.Substring(0, 120) + "..."
                                                             : item.Description)
-                               </p>
+                    </p>
                                         }
                             else
                             {
@@ -130,6 +135,7 @@ else
                             <div><span>Категория:</span> @(item.Categories?.Name ?? "-")</div>
                             <div><span>Форма:</span> @(item.DosageForms?.Name ?? "-")</div>
                             <div><span>Наличност:</span> @item.Quantity бр.</div>
+                            <div><span>Предназначение: </span>@(string.IsNullOrWhiteSpace(item.RecommendedFor) ? "-" : item.RecommendedFor)</div>
                         </div>
                         @if (item.Quantity <= 5 && item.Quantity > 0)
                         {

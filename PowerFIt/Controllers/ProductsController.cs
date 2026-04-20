@@ -24,11 +24,12 @@ namespace PowerFIt.Controllers
 
         // GET: Products
         public async Task<IActionResult> Index(
-      string searchTerm,
-      int? categoryId,
-      int? dosageFormId,
-      string categoryName,
-      string sortOrder)
+           string searchTerm,
+           int? categoryId,
+           int? dosageFormId,
+           string categoryName,
+           string recommendedFor,
+           string sortOrder)
         {
             var productsQuery = _context.Products
                 .Include(p => p.Categories)
@@ -44,7 +45,8 @@ namespace PowerFIt.Controllers
 
             if (!string.IsNullOrWhiteSpace(categoryName))
             {
-                productsQuery = productsQuery.Where(p => p.Categories != null && p.Categories.Name == categoryName);
+                productsQuery = productsQuery.Where(p =>
+                    p.Categories != null && p.Categories.Name == categoryName);
             }
             else if (categoryId.HasValue)
             {
@@ -56,6 +58,13 @@ namespace PowerFIt.Controllers
                 productsQuery = productsQuery.Where(p => p.DosageFormId == dosageFormId.Value);
             }
 
+            if (!string.IsNullOrWhiteSpace(recommendedFor))
+            {
+                productsQuery = productsQuery.Where(p =>
+                    p.RecommendedFor != null &&
+                    p.RecommendedFor.Contains(recommendedFor));
+            }
+
             productsQuery = sortOrder switch
             {
                 "name_desc" => productsQuery.OrderByDescending(p => p.Name),
@@ -65,27 +74,30 @@ namespace PowerFIt.Controllers
             };
 
             ViewBag.Categories = new SelectList(
-                await _context.Categories.ToListAsync(),
-                "Id",
-                "Name",
-                categoryId
-            );
+                await _context.Categories.ToListAsync(), "Id", "Name", categoryId);
 
             ViewBag.DosageForms = new SelectList(
-                await _context.DosageForms.ToListAsync(),
-                "Id",
-                "Name",
-                dosageFormId
-            );
+                await _context.DosageForms.ToListAsync(), "Id", "Name", dosageFormId);
+
+            var recommendedForOptions = await _context.Products
+                .Where(p => !string.IsNullOrWhiteSpace(p.RecommendedFor))
+                .Select(p => p.RecommendedFor)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToListAsync();
+
+            ViewBag.RecommendedForOptions = new SelectList(
+                recommendedForOptions, recommendedFor);
 
             ViewBag.SearchTerm = searchTerm;
             ViewBag.SortOrder = sortOrder;
             ViewBag.SelectedCategoryName = categoryName;
+            ViewBag.SelectedRecommendedFor = recommendedFor;
 
             var products = await productsQuery.ToListAsync();
-
             return View(products);
         }
+
 
 
         // GET: Products/Details/5
