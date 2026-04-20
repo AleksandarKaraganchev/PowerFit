@@ -10,5 +10,7 @@
         public DateTime OrderDate { get; set; }
         public Product Products { get; set; }//vruska s tablica Product
         public Customer Customers { get; set; }//vruska s tablica Customers
+        public decimal? UnitPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
     }
 }

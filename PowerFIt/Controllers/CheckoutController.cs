@@ -162,6 +162,8 @@ namespace PowerFIt.Controllers
                     ProductId = item.ProductId,
                     CustomerId = userId,
                     Quantity = item.Quantity,
+                    UnitPrice = product.Price,
+                    TotalPrice = product.Price * item.Quantity,
                     Description = $"Поръчка за продукт: {item.ProductName}",
                     OrderDate = DateTime.Now
                 };

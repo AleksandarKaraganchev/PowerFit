@@ -80,7 +80,7 @@ else
                         </div>
 
                         <div class="order-date">
-                            @item.OrderDate
+                            @item.OrderDate.ToString("dd.MM.yyyy HH:mm")
                         </div>
                     </div>
 
@@ -94,7 +94,8 @@ else
                             <div><span>Количество:</span> @item.Quantity</div>
                             <div><span>Дата:</span> @item.OrderDate</div>
                             <div><span>Описание:</span> @(string.IsNullOrWhiteSpace(item.Description) ? "-" : item.Description)</div>
-                            <div><span>Обща стойност:</span> @((item.Products != null ? item.Products.Price * item.Quantity : 0).ToString("0.00")) €</div>
+                            <div><span>Единична цена:</span> @((item.UnitPrice ?? item.Products?.Price ?? 0).ToString("0.00")) €</div>
+                            <div><span>Обща стойност:</span> @((item.TotalPrice ?? ((item.Products?.Price ?? 0) * item.Quantity)).ToString("0.00")) €</div>
                         </div>
                     </div>
 
