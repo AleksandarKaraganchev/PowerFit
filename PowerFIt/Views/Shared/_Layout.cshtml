@@ -6,7 +6,6 @@
 
 @{
     var cartCount = 0;
-
     var sessionData = Context.Session.GetString("CheckoutItems");
 
     if (!string.IsNullOrEmpty(sessionData))
@@ -15,20 +14,24 @@
         cartCount = items?.Sum(x => x.Quantity) ?? 0;
     }
 }
-@{
-    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
-    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
-}
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Сила и действие</title>
-
+    <script>
+        (function () {
+            if (localStorage.getItem("theme") === "light") {
+                document.documentElement.classList.add("light");
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-xl custom-navbar">
@@ -41,13 +44,23 @@
                     </span>
                 </a>
 
-                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler custom-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNav"
+                        aria-controls="mainNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="mainNav">
                     <ul class="navbar-nav mx-auto align-items-xl-center main-nav-list">
+                        <li class="nav-item">
+                            <button id="theme-toggle" type="button" class="btn btn-sm theme-toggle-btn">
+                                ☀️
+                            </button>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
@@ -57,50 +70,65 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               id="categoriesDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
                                 Категории
                             </a>
+
                             <ul class="dropdown-menu custom-dropdown" aria-labelledby="categoriesDropdown">
                                 <li>
                                     <a class="dropdown-item" asp-controller="Categories" asp-action="Index">
                                         Всички категории
                                     </a>
                                 </li>
+
                                 <li><hr class="dropdown-divider custom-divider" /></li>
+
                                 <li>
                                     <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Протеини">
                                         Протеини
                                     </a>
                                 </li>
+
                                 <li>
                                     <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Fat-burners">
                                         Fat-burners
                                     </a>
                                 </li>
+
                                 <li>
                                     <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Креатин">
                                         Креатин
                                     </a>
                                 </li>
+
                                 <li>
                                     <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="BCAA">
                                         BCAA
                                     </a>
                                 </li>
+
                                 <li>
                                     <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="EAA">
                                         EAA
                                     </a>
                                 </li>
+
                                 <li>
                                     <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Здравословни храни">
                                         Храни
                                     </a>
                                 </li>
-                                <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Витамини и Минерали">
-                                    Витамини и минерали
-                                </a>
-                        </li>
+
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Products" asp-action="Index" asp-route-categoryName="Витамини и Минерали">
+                                        Витамини и минерали
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -119,25 +147,57 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle admin-link" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle admin-link"
+                                   href="#"
+                                   id="adminDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
                                     Админ панел
                                 </a>
+
                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="adminDropdown">
-                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="Create">Добави продукт</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Управление на продукти</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Categories" asp-action="Index">Категории</a></li>
-                                    <li><a class="dropdown-item" asp-controller="DosageForms" asp-action="Index">Форми</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Orders" asp-action="Index">Поръчки</a></li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Products" asp-action="LowStock">
-                                        Ниска наличност
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Admin" asp-action="Index">
-                                        Табло
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Products" asp-action="Create">
+                                            Добави продукт
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Products" asp-action="Index">
+                                            Управление на продукти
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Categories" asp-action="Index">
+                                            Категории
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="DosageForms" asp-action="Index">
+                                            Форми
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
+                                            Поръчки
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Products" asp-action="LowStock">
+                                            Ниска наличност
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Admin" asp-action="Index">
+                                            Табло
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         }
@@ -157,25 +217,38 @@
                             </li>
 
                             <li class="nav-item dropdown profile-dropdown-wrap">
-                                <a class="nav-link dropdown-toggle nav-user profile-link" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle nav-user profile-link"
+                                   href="#"
+                                   id="profileDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
                                     @User.Identity?.Name
                                 </a>
+
                                 <ul class="dropdown-menu dropdown-menu-end custom-dropdown" aria-labelledby="profileDropdown">
                                     <li>
                                         <a class="dropdown-item" asp-controller="Profile" asp-action="Index">
                                             Моят профил
                                         </a>
                                     </li>
+
                                     <li>
                                         <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
                                             Моите поръчки
                                         </a>
                                     </li>
+
                                     <li><hr class="dropdown-divider custom-divider" /></li>
+
                                     <li>
-                                        <form class="px-2" asp-area="Identity" asp-page="/Account/Logout"
+                                        <form class="px-2"
+                                              asp-area="Identity"
+                                              asp-page="/Account/Logout"
                                               asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                            <button type="submit" class="btn nav-btn-outline w-100">Изход</button>
+                                            <button type="submit" class="btn nav-btn-outline w-100">
+                                                Изход
+                                            </button>
                                         </form>
                                     </li>
                                 </ul>
@@ -184,10 +257,19 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="btn nav-btn-outline me-2" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+                                <a class="btn nav-btn-outline me-2"
+                                   asp-area="Identity"
+                                   asp-page="/Account/Register">
+                                    Регистрация
+                                </a>
                             </li>
+
                             <li class="nav-item">
-                                <a class="btn nav-btn-solid" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+                                <a class="btn nav-btn-solid"
+                                   asp-area="Identity"
+                                   asp-page="/Account/Login">
+                                    Вход
+                                </a>
                             </li>
                         }
                     </ul>
@@ -244,6 +326,7 @@
     </footer>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

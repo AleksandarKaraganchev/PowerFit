@@ -1,18 +1,21 @@
-﻿const toggleBtn = document.getElementById("theme-toggle");
-const body = document.body;
+﻿document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("theme-toggle");
+    const root = document.documentElement;
 
-if (localStorage.getItem("theme") === "light") {
-    body.classList.add("light");
-    if (toggleBtn) toggleBtn.textContent = "🌙";
-} else {
-    if (toggleBtn) toggleBtn.textContent = "☀️";
-}
+    if (!toggleBtn) return;
 
-if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-        body.classList.toggle("light");
+    if (localStorage.getItem("theme") === "light") {
+        root.classList.add("light");
+        toggleBtn.textContent = "🌙";
+    } else {
+        root.classList.remove("light");
+        toggleBtn.textContent = "☀️";
+    }
 
-        if (body.classList.contains("light")) {
+    toggleBtn.addEventListener("click", function () {
+        root.classList.toggle("light");
+
+        if (root.classList.contains("light")) {
             localStorage.setItem("theme", "light");
             toggleBtn.textContent = "🌙";
         } else {
@@ -20,4 +23,4 @@ if (toggleBtn) {
             toggleBtn.textContent = "☀️";
         }
     });
-}
+});
