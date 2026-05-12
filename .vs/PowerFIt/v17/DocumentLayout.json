@@ -3,40 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\services\\applicationbuilderextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\services\\applicationbuilderextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|c:\\users\\hp bbd\\desktop\\powerfit - main\\powerfit\\powerfit\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{AA2A6392-F98E-4C2E-A31B-5B889BB67796}|PowerFIt\\PowerFIt.csproj|solutionrelative:powerfit\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,115 +30,55 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "PowerFIt\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "PowerFIt\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAADUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-08T11:55:43.144Z",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAswFIAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T12:17:34.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "About.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Views\\Home\\About.cshtml",
-              "RelativeDocumentMoniker": "PowerFIt\\Views\\Home\\About.cshtml",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Views\\Home\\About.cshtml",
-              "RelativeToolTip": "PowerFIt\\Views\\Home\\About.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADEAAAAxAAAAAAAAAA==",
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "PowerFIt\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "PowerFIt\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAADEAAAAAAAAAAAAYwCsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-08T11:54:10.565Z",
+              "WhenOpened": "2026-05-09T10:23:17.381Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationBuilderExtension.cs",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Services\\ApplicationBuilderExtension.cs",
-              "RelativeDocumentMoniker": "PowerFIt\\Services\\ApplicationBuilderExtension.cs",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Services\\ApplicationBuilderExtension.cs",
-              "RelativeToolTip": "PowerFIt\\Services\\ApplicationBuilderExtension.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAQwD4AAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T08:12:54.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "PowerFIt\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "PowerFIt\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T08:12:49.037Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeToolTip": "PowerFIt\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAYwCIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-30T14:21:00.144Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "PowerFIt\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "PowerFIt\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADMAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-30T13:44:42.172Z",
+              "WhenOpened": "2026-04-30T14:21:00.144Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "PowerFIt\\wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\wwwroot\\css\\site.css",
               "RelativeToolTip": "PowerFIt\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYKAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAB4LAAAAAAAAAAAAAC0LAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-04-30T13:43:39.445Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "site.js",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\wwwroot\\js\\site.js",
-              "RelativeDocumentMoniker": "PowerFIt\\wwwroot\\js\\site.js",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\wwwroot\\js\\site.js",
-              "RelativeToolTip": "PowerFIt\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-04-30T13:41:41.15Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Models\\Order.cs",
-              "RelativeDocumentMoniker": "PowerFIt\\Models\\Order.cs",
-              "ToolTip": "C:\\Users\\HP bbd\\Desktop\\PowerFit - main\\PowerFit\\PowerFIt\\Models\\Order.cs",
-              "RelativeToolTip": "PowerFIt\\Models\\Order.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-30T13:38:59.385Z"
+              "WhenOpened": "2026-04-30T13:43:39.445Z",
+              "EditorCaption": ""
             }
           ]
         }
